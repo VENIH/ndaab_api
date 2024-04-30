@@ -1,9 +1,9 @@
-name: Docker Nginx ECS Build, Test, & Log Creation
+name:ndaab_api v1 workflow 
 
 on:
   push:
     branches:
-      - main 
+      - online 
 
 jobs:
   create-ecs-repo:
