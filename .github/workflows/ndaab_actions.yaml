@@ -1,9 +1,10 @@
-name:ndaab_api@v1_workflow(dev)
+name:
+  ndaab_api@v1_workflow(dev)
 
 on:
   push:
     branches:
-      - [online] 
+      - online
 
 jobs:
   create-ecs-repo:
