@@ -20,3 +20,4 @@ jobs:
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws configure set region ${{ secrets.AWS_REGION }}
           aws ecr create-repository --repository-name ${{ secrets.IMAGE_NAME }} --region us-east-1 || true
+          
