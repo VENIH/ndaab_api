@@ -33,7 +33,7 @@ jobs:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
         IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
         IMAGE_TAG: ${{ github.sha }}
-        ECS_REPO: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.IMAGE_NAME }}
+        ECS_REPO: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-west-1.amazonaws.com/${{ secrets.IMAGE_NAME }}
 
       steps:
         - name: Checkout code
@@ -44,7 +44,7 @@ jobs:
           with:
             aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
             aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-            
+
             aws-region: ${{ secrets.AWS_REGION }}
 
         - name: Build Docker Nginx Image
