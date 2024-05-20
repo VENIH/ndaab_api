@@ -19,7 +19,7 @@ jobs:
           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws configure set region ${{ secrets.AWS_REGION }}
-          aws ecr create-repository --repository-name ${{ secrets.IMAGE_NAME }} --region us-east-2 || true
+          aws ecr create-repository --repository-name ${{ secrets.IMAGE_NAME }} --region ${{ secrets.AWS_REGION }} || true
 
   build-and-push:
       needs: create-ecs-repo
@@ -50,9 +50,9 @@ jobs:
         - name: Build Docker Nginx Image
           run: |
             docker-compose build
-            docker tag $IMAGE_NAME:$IMAGE_TAG $ECS_REPO:$IMAGE_TAG
+            docker tag ndab_api_dev:ndab_api_dev ${{ secrets.ECS_REPO }}:ndab_api_dev
       
         - name: Push Docker Nginx Image to ECS
           run: |
-            aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $ECS_REPO
-            docker push $ECS_REPO:$IMAGE_TAG
+            aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECS_REPO }}
+            docker push ${{ secrets.ECS_REPO }}:ndab_api_dev
