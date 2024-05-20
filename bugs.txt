@@ -1,0 +1,1 @@
+ecr only availlable in us-east-2
