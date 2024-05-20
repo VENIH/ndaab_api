@@ -50,9 +50,9 @@ jobs:
         - name: Build Docker Nginx Image
           run: |
             docker-compose build
-            docker tag ndab_api_dev:ndab_api_dev ${{ secrets.ECS_REPO }}:ndab_api_dev
+            docker tag ndaab-api-dev:ndaab-api-dev ${{ secrets.ECS_REPO }}:ndaab-api-dev
       
         - name: Push Docker Nginx Image to ECS
           run: |
             aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.ECS_REPO }}
-            docker push ${{ secrets.ECS_REPO }}:ndab_api_dev
+            docker push ${{ secrets.ECS_REPO }}:ndaab-api-dev
