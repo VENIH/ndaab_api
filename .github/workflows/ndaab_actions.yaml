@@ -1,5 +1,5 @@
 name:
-  ndaab_api@v1_workflow(dev@v1.0.0)
+  ndaab_api@v1_workflow(dev1.0.0)
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
 
       strategy:
         matrix:
-          environment: [dev@v1.0.0]
+          environment: [dev1.0.0]
 
       env:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
@@ -50,9 +50,9 @@ jobs:
         - name: Build Docker Nginx Image
           run: |
             docker-compose build
-            docker tag ${{ secrets.IMAGE_NAME }}:dev@v1.0.0 ${{ secrets.IMAGE_NAME }}:dev@v1.0.0
+            docker tag ${{ secrets.IMAGE_NAME }}:dev1.0.0 ${{ secrets.IMAGE_NAME }}:dev1.0.0
       
         - name: Push Docker Nginx Image to ECS
           run: |
             aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.IMAGE_NAME }}
-            docker push ${{ secrets.IMAGE_NAME }}:dev@v1.0.0
+            docker push ${{ secrets.IMAGE_NAME }}:dev1.0.0
