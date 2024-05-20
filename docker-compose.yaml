@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  gateway:
+    build:
+      context: ./gateway
+      restart: always
+      ports:
+        - "80:80"
+    image: $IMAGE_NAME:$IMAGE_TAG
