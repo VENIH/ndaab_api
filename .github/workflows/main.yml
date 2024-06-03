@@ -7,6 +7,13 @@ jobs:
   build-and-push:
     name: Build and Push to ECR
     runs-on: ubuntu-latest
+
+    env:
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+      IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
+      IMAGE_TAG: ${{ github.sha }}
+      ECS_REPO: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.IMAGE_NAME }}
+
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -34,5 +41,5 @@ jobs:
         ECR_REPOSITORY:  ${{ secrets.IMAGE_NAME }}
         IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: |
-        docker-compose build  ${{ secrets.IMAGE_NAME }}:$IMAGE_TAG .
-        docker push  ${{ secrets.IMAGE_NAME }}:$IMAGE_TAG
+        docker-compose build  $IMAGE_NAME:$IMAGE_TAG .
+        docker push  $IMAGE_NAME:$IMAGE_TAG
