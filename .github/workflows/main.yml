@@ -34,5 +34,5 @@ jobs:
         ECR_REPOSITORY:  ${{ secrets.IMAGE_NAME }}
         IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: |
-        docker-compose build $IMAGE_NAME:$IMAGE_TAG .
-        docker push $IMAGE_NAME:$IMAGE_TAG
+        docker-compose build  ${{ secrets.IMAGE_NAME }}:$IMAGE_TAG .
+        docker push  ${{ secrets.IMAGE_NAME }}:$IMAGE_TAG
