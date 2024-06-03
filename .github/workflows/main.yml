@@ -7,6 +7,13 @@ jobs:
   build-and-push:
     name: Build and Push to ECR
     runs-on: ubuntu-latest
+
+    env:
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+      IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
+      IMAGE_TAG: ${{ github.sha }}
+      ECS_REPO: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.IMAGE_NAME }}
+
     steps:
     - name: Checkout
       uses: actions/checkout@v2
