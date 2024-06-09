@@ -8,4 +8,4 @@ services:
     restart: always
     ports:
       - "80:80"
-    image: $IMAGE_NAME:$IMAGE_TAG
+
