@@ -42,4 +42,4 @@ jobs:
         IMAGE_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: |
         docker-compose build $IMAGE_NAME .
-        docker push $IMAGE_NAME:$IMAGE_TAG
+        docker push $IMAGE_NAME
